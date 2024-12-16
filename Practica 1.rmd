@@ -4,7 +4,7 @@ output: html_document
 date: "2024-12-16"
 ---
 
-# Práctica Data Science
+# ACTIVIDAD 1: Data Science
 
 ## Pregunta 1
 
@@ -30,24 +30,8 @@ Respuesta:
 
 Considera el siguiente escenario:
 
-Sabemos que un usuario de nuestra red empresarial ha estado usando esta para fines
-no relacionados con el trabajo, como por ejemplo tener un servicio web no autorizado
-abierto a la red (otros usuarios tienen servicios web activados y autorizados). No
-queremos tener que rastrear los puertos de cada PC, y sabemos que la actividad puede
-haber cesado. Pero podemos acceder a los registros de conexiones TCP de cada máquina
-de cada trabajador (hacia donde abre conexión un PC concreto). Sabemos que nuestros
-clientes se conectan desde lugares remotos de forma legítima, como parte de nuestro
-negocio, y que un trabajador puede haber habilitado temporalmente servicios de
-prueba. Nuestro objetivo es reducir lo posible la lista de posibles culpables, con tal de
-explicarles que por favor no expongan nuestros sistemas sin permiso de los operadores
-o la dirección.
+Sabemos que un usuario de nuestra red empresarial ha estado usando esta para fines no relacionados con el trabajo, como por ejemplo tener un servicio web no autorizado abierto a la red (otros usuarios tienen servicios web activados y autorizados). No queremos tener que rastrear los puertos de cada PC, y sabemos que la actividad puede haber cesado. Pero podemos acceder a los registros de conexiones TCP de cada máquina de cada trabajador (hacia donde abre conexión un PC concreto). Sabemos que nuestros clientes se conectan desde lugares remotos de forma legítima, como parte de nuestro negocio, y que un trabajador puede haber habilitado temporalmente servicios de prueba. Nuestro objetivo es reducir lo posible la lista de posibles culpables, con tal de explicarles que por favor no expongan nuestros sistemas sin permiso de los operadores o la dirección.
 
-Explica con detalle cómo se podría proceder al análisis y resolución del problema
-mediante Data Science, indicando de donde se obtendrían los datos, qué tratamiento
-deberían recibir, qué preguntas hacerse para resolver el problema, qué datos y gráficos
-se obtendrían, y cómo se comunicarían estos.
+Explica con detalle cómo se podría proceder al análisis y resolución del problema mediante Data Science, indicando de donde se obtendrían los datos, qué tratamiento deberían recibir, qué preguntas hacerse para resolver el problema, qué datos y gráficos se obtendrían, y cómo se comunicarían estos.
 
 Respuesta:
-
-
-
