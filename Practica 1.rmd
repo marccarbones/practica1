@@ -35,3 +35,22 @@ Sabemos que un usuario de nuestra red empresarial ha estado usando esta para fin
 Explica con detalle cómo se podría proceder al análisis y resolución del problema mediante Data Science, indicando de donde se obtendrían los datos, qué tratamiento deberían recibir, qué preguntas hacerse para resolver el problema, qué datos y gráficos se obtendrían, y cómo se comunicarían estos.
 
 Respuesta:
+
+# ACTIVIDAD 2: Introducción a R
+
+## Pregunta 1
+
+## Pregunta 2
+
+## Pregunta 3
+
+## Pregunta 4
+
+## Pregunta 5
+
+## Pregunta 6
+
+
+
+
+
