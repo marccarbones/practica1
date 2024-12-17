@@ -53,6 +53,10 @@ Podemos cruzar los dos conjuntos de datos y ver qué conexiones se han hecho des
 
 # ACTIVIDAD 2: Introducción a R
 
+```{r neteja_dades}
+epa_http$X6 <- as.factor(epa_http$X6)
+```
+
 ## Pregunta 1
 
 1.  Cuales son las dimensiones del dataset cargado (número de filas y columnas)
