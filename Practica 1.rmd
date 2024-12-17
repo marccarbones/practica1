@@ -31,7 +31,7 @@ EXPLORATORIA: Con este análisis lograremos detectar características relevantes
 
 Respuesta:
 
-INFERENCIA: Según este análisis en base a lo que ya venía sucediendo con la red telefónica suponemos o predecimos que los próximos datos enviados desde la red seguirán con el mismo problema.
+La primera pregunta es predictiva, puesto que buca anticipar si el conjunto de datos habrá cambiado (en cuanto al número de mensajes incorrectos). La segunda es INFERENCIAL: Según este análisis en base a lo que ya venía sucediendo con la red telefónica suponemos o predecimos que los próximos datos enviados desde la red seguirán con el mismo problema.
 
 4.  Dado los registros de usuarios de un servicio de compras por internet, los usuarios pueden agruparse por preferencias de productos comprados. Queremos saber si ¿Es posible que, dado un usuario al azar y según su historial, pueda ser directamente asignado a un o diversos grupos?
 
