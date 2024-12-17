@@ -114,6 +114,12 @@ De todas las peticiones recibidas por el servidor cual es la hora en la que hay 
 
 De las peticiones hechas por instituciones educativas (.edu), ¿Cuantos bytes en total se han transmitido, en peticiones de descarga de ficheros de texto ".txt"?
 
+```{r}
+epa_http$X7 <- as.numeric(epa_http$X7)
+sum(subset(epa_http, str_detect(X1, "\\.edu") & str_detect(X4, "\\.txt"))$X7, na.rm = TRUE)
+```
+
+
 ## Pregunta 5
 
 Si separamos la petición en 3 partes (Tipo, URL, Protocolo), usando str_split y el separador " " (espacio), ¿cuantas peticiones buscan directamente la URL = "/"?
