@@ -109,6 +109,12 @@ La suma de registros que contienen ".edu" es de 6.524
 
 De todas las peticiones recibidas por el servidor cual es la hora en la que hay mayor volumen de peticiones HTTP de tipo "GET"?
 
+```{r}
+epa_http$hora <- substr(epa_http$X2, 5, 6)
+table(epa_http$hora)
+```
+Hemos contado de la segunda columna todos los elementos.
+
 ## Pregunta 4
 
 De las peticiones hechas por instituciones educativas (.edu), ¿Cuantos bytes en total se han transmitido, en peticiones de descarga de ficheros de texto ".txt"?
