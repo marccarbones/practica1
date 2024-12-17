@@ -79,7 +79,22 @@ epa_http$X6 <- as.factor(epa_http$X6)
 ## Pregunta 1
 
 1.  Cuales son las dimensiones del dataset cargado (número de filas y columnas)
+
+```{r}
+dim(epa_http)
+```
+Como vemos, el data frame tiene 47748 filas y 7 columnas.
+
+
+
 2.  Valor medio de la columna Bytes
+
+```{r}
+epa_http$X7 <- as.numeric(epa_http$X7)
+mean(epa_http$X7, na.rm=TRUE)
+```
+La media de la columna bytes es 7352.335, ignorando las que no tienen el contenido disponible. 
+
 
 ## Pregunta 2
 
