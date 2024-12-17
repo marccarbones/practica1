@@ -128,3 +128,9 @@ Si separamos la petición en 3 partes (Tipo, URL, Protocolo), usando str_split y
 ## Pregunta 6
 
 Aprovechando que hemos separado la petición en 3 partes (Tipo, URL, Protocolo) ¿Cuantas peticiones NO tienen como protocolo "HTTP/0.2"?
+
+```{r}
+sum(!grepl("HTTP/0.2", epa_http$X5))
+```
+
+El número de registros que no tienen el protocolo "HTTP/0.2" es de 47.747
