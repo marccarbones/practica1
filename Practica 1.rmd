@@ -83,9 +83,8 @@ epa_http$X6 <- as.factor(epa_http$X6)
 ```{r}
 dim(epa_http)
 ```
+
 Como vemos, el data frame tiene 47748 filas y 7 columnas.
-
-
 
 2.  Valor medio de la columna Bytes
 
@@ -93,8 +92,8 @@ Como vemos, el data frame tiene 47748 filas y 7 columnas.
 epa_http$X7 <- as.numeric(epa_http$X7)
 mean(epa_http$X7, na.rm=TRUE)
 ```
-La media de la columna bytes es 7352.335, ignorando las que no tienen el contenido disponible. 
 
+La media de la columna bytes es 7352.335, ignorando las que no tienen el contenido disponible.
 
 ## Pregunta 2
 
@@ -103,8 +102,8 @@ De las diferentes IPs de origen accediendo al servidor, ¿cuantas pertenecen a u
 ```{r}
 sum(str_detect(epa_http$X1, "\\.edu"))
 ```
-La suma de registros que contienen ".edu" es de 6.524
 
+La suma de registros que contienen ".edu" es de 6.524
 
 ## Pregunta 3
 
@@ -118,6 +117,8 @@ De las peticiones hechas por instituciones educativas (.edu), ¿Cuantos bytes en
 epa_http$X7 <- as.numeric(epa_http$X7)
 sum(subset(epa_http, str_detect(X1, "\\.edu") & str_detect(X4, "\\.txt"))$X7, na.rm = TRUE)
 ```
+
+Se han transmitido 2.705.408 bytes
 
 
 ## Pregunta 5
