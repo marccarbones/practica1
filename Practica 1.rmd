@@ -100,6 +100,12 @@ La media de la columna bytes es 7352.335, ignorando las que no tienen el conteni
 
 De las diferentes IPs de origen accediendo al servidor, ¿cuantas pertenecen a una IP claramente educativa (que contenga ".edu")?
 
+```{r}
+sum(str_detect(epa_http$X1, "\\.edu"))
+```
+La suma de registros que contienen ".edu" es de 6.524
+
+
 ## Pregunta 3
 
 De todas las peticiones recibidas por el servidor cual es la hora en la que hay mayor volumen de peticiones HTTP de tipo "GET"?
