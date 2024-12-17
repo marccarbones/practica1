@@ -66,8 +66,10 @@ Podemos cruzar los dos conjuntos de datos y ver qué conexiones se han hecho des
 
 # ACTIVIDAD 2: Introducción a R
 
-```{r carrega_dades}
-epa_http <- read_table("~/practica1/epa-http.csv")
+```{r carrega_dades, attr.warning=F}
+library(readr)
+epa_http <- read_table("epa-http.csv", col_names = FALSE)
+View(epa_http)
 ```
 
 ```{r neteja_dades}
