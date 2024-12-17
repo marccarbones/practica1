@@ -16,7 +16,7 @@ Respuesta: Descriptiva. Porque busca describir y resumir datos como la cantidad,
 
 2.  Dado un registro de visualizaciones de un servicio de video-on-demand, donde disponemos de los datos del usuario, de la película seleccionada, fecha de visualización y categoría de la película, queremos saber ¿Hay alguna preferencia en cuanto a género literario según los usuarios y su rango de edad?
 
-Respuesta:
+Respuesta: Exploratoria, puesto que busca descubrir la relación entre los datos del usuario para obtener más información de la que actualmente se dispone.
 
 3.  Dado un registro de peticiones a un sitio web, vemos que las peticiones que provienen de una red de telefonía concreta acostumbran a ser incorrectas y provocarnos errores de servicio. ¿Podemos determinar si en el futuro, los próximos mensajes de esa red seguirán dando problemas? ¿Hemos notado el mismo efecto en otras redes de telefonía?
 
@@ -40,14 +40,14 @@ Tenemos dos conjuntos de datos:
 
 1/ El conjunto de datos con las conexiones TCP originadas des de los equipos corporativos. En este conjunto tendremos los siguientes datos:
 
-- dirección IP de orígen (equipo coroporativo)
-- dirección IP de destino
-- puerto de destino
+-   dirección IP de orígen (equipo coroporativo)
+-   dirección IP de destino
+-   puerto de destino
 
 2/ El conjunto de datos con los servicios legítimos que como parte de nuestro negocio prestamos a clientes. En este conjunto tendremos los siguientes datos:
 
-- dirección IP del servicio legítimo
-- puerto del servicio
+-   dirección IP del servicio legítimo
+-   puerto del servicio
 
 Podemos cruzar los dos conjuntos de datos y ver qué conexiones se han hecho desde los equipos corporativos a direcciones IP locales (de la empresa) que no están dentro del conjunto de datos de servicios legítimos.
 
