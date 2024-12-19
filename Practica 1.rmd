@@ -111,9 +111,15 @@ De todas las peticiones recibidas por el servidor cual es la hora en la que hay 
 
 ```{r}
 epa_http$hora <- substr(epa_http$X2, 5, 6)
-table(epa_http$hora)
+tabla <- table(epa_http$hora, epa_http$X3=='"GET') 
+tabla <- tabla[, "TRUE"]
+cat("El mayor número de peticiones recibidas en una hora es de", max(tabla), "\n")
+cat("Ha sido en la hora ", which.max(tabla)-1, "\n")
+
 ```
-Hemos contado de la segunda columna todos los elementos.
+Primero hemos usado la función 'substr()' para construir una nueva columna que refleje tan solo las horas de la columna X2. A continuación creamos la tabla de frecuencias cruzadas. Es decir, fabricamos una tabla que cuente la frecuencia de peticiones por cada hora y que a su vez sean del tipo "GET". De esa tabla descartamos la columna "FALSE" porque no nos interesa y finalmente obtenemos el valor máximo de peticiones y el índice del vector donde se encuentra. 
+
+Observación: hemos considerado negligible la cantidad de peticiones durante la hora 23 del día 29, ya que éstas empiezan en el minuto 53, por tanto han sido sumadas a la hora 23 del día 30.
 
 ## Pregunta 4
 
