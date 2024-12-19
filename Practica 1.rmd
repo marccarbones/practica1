@@ -137,6 +137,12 @@ Se han transmitido 2.705.408 bytes
 
 Si separamos la petición en 3 partes (Tipo, URL, Protocolo), usando str_split y el separador " " (espacio), ¿cuantas peticiones buscan directamente la URL = "/"?
 
+```{r}
+sum(sapply(strsplit(epa_http$X4, " "), function(x) all(x == "/")))
+```
+Usamos la función strsplit con el separador " " y al output le aplicamos una función que verifica si cada petición ha buscado directamente la URL "/", en cuyo caso suma 1 gracias a la función "sum".
+
+Por tanto ha habido 2382 peticiones que buscan directamente la URL = “/”.
 ## Pregunta 6
 
 Aprovechando que hemos separado la petición en 3 partes (Tipo, URL, Protocolo) ¿Cuantas peticiones NO tienen como protocolo "HTTP/0.2"?
