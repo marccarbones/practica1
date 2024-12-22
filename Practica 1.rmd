@@ -49,20 +49,107 @@ Explica con detalle cómo se podría proceder al análisis y resolución del pro
 
 Respuesta:
 
-Tenemos dos conjuntos de datos:
+1.  Obtención de los Datos:
 
-1/ El conjunto de datos con las conexiones TCP originadas des de los equipos corporativos. En este conjunto tendremos los siguientes datos:
+Conjunto de Datos 1: Conexiones TCP desde Equipos Corporativos:
 
--   dirección IP de orígen (equipo coroporativo)
--   dirección IP de destino
--   puerto de destino
+Fuente: Registros de conexiones TCP de cada máquina.
 
-2/ El conjunto de datos con los servicios legítimos que como parte de nuestro negocio prestamos a clientes. En este conjunto tendremos los siguientes datos:
+Campos:
 
--   dirección IP del servicio legítimo
--   puerto del servicio
+-   IP_Origen (Dirección IP del equipo corporativo)
 
-Podemos cruzar los dos conjuntos de datos y ver qué conexiones se han hecho desde los equipos corporativos a direcciones IP locales (de la empresa) que no están dentro del conjunto de datos de servicios legítimos.
+-   IP_Destino (Dirección IP a la que se conecta)
+
+-   Puerto_Destino (Puerto al que se conecta)
+
+-   Timestamp (Fecha y hora de la conexión - Importante para acotar el análisis en el tiempo)
+
+-   Usuario (Nombre del usuario del equipo, si está disponible)
+
+Conjunto de Datos 2: Servicios Legítimos:
+
+Fuente: Inventario o base de datos de servicios autorizados.
+
+Campos:
+
+-   IP_Servicio (Dirección IP del servicio legítimo)
+
+-   Puerto_Servicio (Puerto del servicio legítimo)
+
+2.  Tratamiento de los Datos:
+
+Limpieza:
+
+Conjunto de Datos 1 (Conexiones TCP):
+
+-   Eliminar registros incompletos o erróneos.
+
+-   Formato consistente de Timestamp.
+
+-   Añadir columna Usuario si está disponible, vinculando la IP_Origen con un usuario.
+
+-   Añadir columna booleana Es_IP_Interna indicando si la IP_Destino pertenece a la red interna de la empresa. Se puede determinar esto comparando la IP_Destino con el rango de IPs internas de la empresa.
+
+-   Acotar el análisis a un periodo de tiempo determinado (si se conoce), para reducir el volumen de datos y enfocar la búsqueda. Por ejemplo, el último mes, la última semana, etc.
+
+Conjunto de Datos 2 (Servicios Legítimos):
+
+-   Eliminar registros incompletos o erróneos.
+
+-   Formato consistente para IP_Servicio y Puerto_Servicio.
+
+Cruce de Datos:
+
+Realizar un LEFT JOIN entre el Conjunto de Datos 1 (Conexiones TCP) y el Conjunto de Datos 2 (Servicios Legítimos), utilizando IP_Destino = IP_Servicio y Puerto_Destino = Puerto_Servicio.
+
+Añadir una columna booleana, por ejemplo, Es_Servicio_Legitimo, que indique si la conexión coincide con un servicio legítimo (TRUE) o no (FALSE).
+
+Filtrar el resultado del cruce: Seleccionar únicamente las filas donde Es_IP_Interna sea TRUE y Es_Servicio_Legitimo sea FALSE. Este será el conjunto de datos con las conexiones sospechosas a IPs internas no autorizadas.
+
+3.  Preguntas a resolver para el análisis:
+
+¿Qué usuarios se han conectado a servicios internos no autorizados? Esta es la pregunta principal, y el filtrado anterior nos da la respuesta directa.
+
+¿A qué IPs y puertos se han conectado? Para identificar los servicios no autorizados expuestos.
+
+¿Con qué frecuencia se han realizado estas conexiones?
+
+¿Cuándo se realizaron estas conexiones? ¿Hay algún patrón temporal? ¿Las conexiones cesaron en algún momento?
+
+¿Podemos identificar el tipo de servicio no autorizado? Analizando el puerto de destino, se puede inferir el tipo de servicio (ej. 8080: probable servidor web de desarrollo, 22: posible acceso SSH, etc.).
+
+4.  Datos y gráficos para el análisis exploratorio
+
+Tabla de Usuarios Sospechosos: Listado de usuarios que han realizado conexiones a servicios internos no autorizados, con las siguientes columnas:
+
+-   Usuario (si está disponible)
+
+-   IP_Origen
+
+-   IP_Destino
+
+-   Puerto_Destino
+
+-   Frecuencia de Conexiones (Número total de conexiones a ese servicio no autorizado)
+
+-   Primer_Timestamp (Fecha y hora de la primera conexión)
+
+-   Último_Timestamp (Fecha y hora de la última conexión)
+
+Gráfico de barras: Frecuencia de conexiones a servicios no autorizados por usuario: Visualizar qué usuarios tienen una mayor frecuencia de conexiones sospechosas.
+
+Tabla de IPs y Puertos No Autorizados: Listado de IPs y puertos internos a los que se han conectado los usuarios, indicando la frecuencia de conexión. Esto permite identificar los servicios expuestos.
+
+Gráfico de barras: Frecuencia de conexiones por Puerto de Destino: Permite visualizar los puertos más utilizados en las conexiones no autorizadas, lo que puede ayudar a inferir el tipo de servicio.
+
+Serie temporal: Número de conexiones a servicios no autorizados por día/hora: Para observar patrones temporales y picos de actividad.
+
+5.  Comunicación de los resultados
+
+Informe: Documentar el proceso de análisis, las preguntas formuladas, los hallazgos (tabla de usuarios sospechosos, tabla de IPs y puertos no autorizados) y las conclusiones.
+
+Presentación: Exponer los resultados de forma clara, utilizando los gráficos para facilitar la comprensión.
 
 # ACTIVIDAD 2: Introducción a R
 
@@ -117,7 +204,8 @@ cat("El mayor número de peticiones recibidas en una hora es de", max(tabla), "\
 cat("Ha sido en la hora ", which.max(tabla)-1, "\n")
 
 ```
-Primero hemos usado la función 'substr()' para construir una nueva columna que refleje tan solo las horas de la columna X2. A continuación creamos la tabla de frecuencias cruzadas. Es decir, fabricamos una tabla que cuente la frecuencia de peticiones por cada hora y que a su vez sean del tipo "GET". De esa tabla descartamos la columna "FALSE" porque no nos interesa y finalmente obtenemos el valor máximo de peticiones y el índice del vector donde se encuentra. 
+
+Primero hemos usado la función 'substr()' para construir una nueva columna que refleje tan solo las horas de la columna X2. A continuación creamos la tabla de frecuencias cruzadas. Es decir, fabricamos una tabla que cuente la frecuencia de peticiones por cada hora y que a su vez sean del tipo "GET". De esa tabla descartamos la columna "FALSE" porque no nos interesa y finalmente obtenemos el valor máximo de peticiones y el índice del vector donde se encuentra.
 
 Observación: hemos considerado negligible la cantidad de peticiones durante la hora 23 del día 29, ya que éstas empiezan en el minuto 53, por tanto han sido sumadas a la hora 23 del día 30.
 
@@ -132,7 +220,6 @@ sum(subset(epa_http, str_detect(X1, "\\.edu") & str_detect(X4, "\\.txt"))$X7, na
 
 Se han transmitido 2.705.408 bytes
 
-
 ## Pregunta 5
 
 Si separamos la petición en 3 partes (Tipo, URL, Protocolo), usando str_split y el separador " " (espacio), ¿cuantas peticiones buscan directamente la URL = "/"?
@@ -140,10 +227,10 @@ Si separamos la petición en 3 partes (Tipo, URL, Protocolo), usando str_split y
 ```{r}
 sum(sapply(strsplit(epa_http$X4, " "), function(x) all(x == "/")))
 ```
+
 Usamos la función strsplit con el separador " " y al output le aplicamos una función que verifica si cada petición ha buscado directamente la URL "/", en cuyo caso suma 1 gracias a la función "sum".
 
-Por tanto ha habido 2382 peticiones que buscan directamente la URL = “/”.
-## Pregunta 6
+Por tanto ha habido 2382 peticiones que buscan directamente la URL = “/”. \## Pregunta 6
 
 Aprovechando que hemos separado la petición en 3 partes (Tipo, URL, Protocolo) ¿Cuantas peticiones NO tienen como protocolo "HTTP/0.2"?
 
