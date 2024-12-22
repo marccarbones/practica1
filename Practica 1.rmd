@@ -232,6 +232,8 @@ Usamos la función strsplit con el separador " " y al output le aplicamos una fu
 
 Por tanto ha habido 2382 peticiones que buscan directamente la URL = “/”. \## Pregunta 6
 
+## Pregunta 6
+
 Aprovechando que hemos separado la petición en 3 partes (Tipo, URL, Protocolo) ¿Cuantas peticiones NO tienen como protocolo "HTTP/0.2"?
 
 ```{r}
